@@ -13,7 +13,6 @@ Monty is a language interpreter made in the C programming language to manage sta
 
 To compile this project, you can use the following command:
 
-bash
 gcc -Wall -Werror -Wextra -pedantic -std=c90 *.c -o monty
 
 ## Option Codes
