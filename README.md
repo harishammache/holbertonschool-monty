@@ -1,4 +1,4 @@
-```markdown
+
 # Monty Project
 
 <a href="https://zupimages.net/viewer.php?id=24/01/z7a0.png"><img src="https://zupimages.net/up/24/01/z7a0.png" alt="" /></a>
@@ -254,5 +254,5 @@ School
 
 ## Authors
 ```
-
-Une fois que vous avez copié ce contenu dans un fichier texte local, enregistrez-le sous le nom "README.md" dans le répertoire de
+- [@Haris HAMMACHE](https://github.com/harishammache)
+- [@Thierry CRAVERO](https://github.com/SpeedCash)
