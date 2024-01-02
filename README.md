@@ -1,1 +1,1 @@
-README
+C - Stacks, Queues - LIFO, FIFO
