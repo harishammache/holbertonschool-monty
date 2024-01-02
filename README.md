@@ -253,6 +253,6 @@ School
 ```
 
 ## Authors
-```
+
 - [@Haris HAMMACHE](https://github.com/harishammache)
 - [@Thierry CRAVERO](https://github.com/SpeedCash)
