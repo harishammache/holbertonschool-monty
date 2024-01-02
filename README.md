@@ -1,7 +1,7 @@
 ```markdown
 # Monty Project
 
-![image](https://github.com/Matilop15/monty/blob/main/img/monty.jpg)
+<a href="https://zupimages.net/viewer.php?id=24/01/z7a0.png"><img src="https://zupimages.net/up/24/01/z7a0.png" alt="" /></a>
 
 Stacks, Queues - LIFO, FIFO, January 2022
 
