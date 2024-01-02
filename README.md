@@ -255,8 +255,4 @@ School
 ## Authors
 ```
 - [@Haris HAMMACHE](https://github.com/harishammache)
-<<<<<<< HEAD
 - [@Thierry CRAVERO](https://github.com/SpeedCash)
-=======
-- [@Thierry CRAVERO](https://github.com/SpeedCash)
->>>>>>> c451cd4 (updated README)
