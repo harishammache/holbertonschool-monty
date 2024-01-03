@@ -1,3 +1,8 @@
+#include "monty.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
 /**
  * push - ajoute un nouvel élément au sommet de la pile
  * @stack: double pointeur vers le haut de la pile
@@ -12,9 +17,6 @@
  *              programme se termine avec EXIT_FAILURE.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 
 void push(stack_t **stack, unsigned int line_number, const char *arg)
 {
