@@ -3,75 +3,82 @@
 
 int main(int argc, char *argv[])
 {
-	FILE *file;
-	char *line = NULL;
-	size_t len = 0;
-	ssize_t read;
-	stack_t *stack = NULL;
+    FILE *file;
+    char *line = NULL;
+    size_t len = 0;
+    ssize_t read;
+    stack_t *stack = NULL;
+    unsigned int line_number = 0; // Déplace cette déclaration hors de la boucle
 
-	if (argc != 2)
-	{
-		fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
-		exit(EXIT_FAILURE);
-	}
+    if (argc != 2)
+    {
+        fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
 
-	file = fopen(argv[1], "r");
-	if (!file)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
+    file = fopen(argv[1], "r");
+    if (!file)
+    {
+        fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+        exit(EXIT_FAILURE);
+    }
 
-	while ((read = getline(&line, &len, file)) != -1)
-   {
-	char *opcode;
-	char *arg;
-	unsigned int line_number = 0;
+    while ((read = getline(&line, &len, file)) != -1)
+    {
+        char *opcode;
+        char *arg;
 
-	// Augmente le numéro de ligne pour chaque instruction
-	line_number++;
+        // Augmente le numéro de ligne pour chaque instruction
+        line_number++;
 
-	// Sépare la ligne en opcode et argument potentiel
-	opcode = strtok(line, " \t\n");
-	arg = strtok(NULL, " \t\n");
+        // Sépare la ligne en opcode et argument potentiel
+        opcode = strtok(line, " \t\n");
+        arg = strtok(NULL, " \t\n");
 
-	// Si la ligne est vide ou un commentaire, continue à la prochaine ligne
-	if (opcode == NULL || opcode[0] == '#')
-	{
-		continue;
-	}
+        // Si la ligne est vide ou un commentaire, continue à la prochaine ligne
+        if (opcode == NULL || opcode[0] == '#')
+        {
+            continue;
+        }
 
-	// Compare et exécute l'opcode
-	if (strcmp(opcode, "push") == 0)
-	{
-		if (arg == NULL)
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			// Ici, libère toute ressource allouée avant de quitter
-			// par exemple: free_stack(&stack); free(line); fclose(file);
-			exit(EXIT_FAILURE);
-		}
-		push(&stack, line_number, arg);
-	}
-	else if (strcmp(opcode, "pall") == 0)
-	{
-		pall(&stack, line_number);
-	}
-	else
-	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
-		// Ici, libère toute ressource allouée avant de quitter
-		// par exemple: free_stack(&stack); free(line); fclose(file);
-		exit(EXIT_FAILURE);
-	}
-}
+        // Compare et exécute l'opcode
+        if (strcmp(opcode, "push") == 0)
+        {
+            if (arg == NULL)
+            {
+                fprintf(stderr, "L%d: usage: push integer\n", line_number);
+                // Libère les ressources avant de quitter
+                free_stack(&stack);
+                free(line);
+                fclose(file);
+                exit(EXIT_FAILURE);
+            }
+            push(&stack, line_number, arg);
+        }
+        else if (strcmp(opcode, "pall") == 0)
+        {
+            pall(&stack, line_number);
+        }
+        else if (strcmp(opcode, "pint") == 0) // Ajout de la condition pour 'pint'
+        {
+            pint(&stack, line_number);
+        }
+        else
+        {
+            fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
+            // Libère les ressources avant de quitter
+            free_stack(&stack);
+            free(line);
+            fclose(file);
+            exit(EXIT_FAILURE);
+        }
+    }
 
+    // Nettoyage et fermeture du fichier
+    fclose(file);
+    free(line);
+    // Libère la pile
+    free_stack(&stack);
 
-	// Nettoyage et fermeture du fichier
-	fclose(file);
-	free(line);
-	// Libère la pile
-	free_stack(&stack);
-
-	return 0;
+    return 0;
 }
