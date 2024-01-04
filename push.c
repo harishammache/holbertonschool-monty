@@ -20,7 +20,8 @@
 
 void push(stack_t **stack, unsigned int line_number, const char *arg)
 {
-	int i = 0;
+	stack_t *new;
+	int num;
 
 	if (arg == NULL)
 	{
@@ -28,32 +29,19 @@ void push(stack_t **stack, unsigned int line_number, const char *arg)
 		exit(EXIT_FAILURE);
 	}
 
-	for (i = 0; arg[i]; i++)
-	{
-		if (!isdigit(arg[i]) && !(i == 0 && arg[i] == '-'))
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			exit(EXIT_FAILURE);
-		}
-	}
+	num = atoi(arg);
 
-	int n = atoi(arg);
-
-	stack_t *new_node = malloc(sizeof(stack_t));
-
-	if (!new_node)
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
-	new_node->n = n;
-	new_node->prev = NULL;
-	new_node->next = *stack;
-
+	new->n = num;
+	new->prev = NULL;
+	new->next = *stack;
 	if (*stack != NULL)
-	{
-		(*stack)->prev = new_node;
-	}
-	*stack = new_node;
+		(*stack)->prev = new;
+	*stack = new;
 }
