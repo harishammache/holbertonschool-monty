@@ -29,15 +29,6 @@ void push(stack_t **stack, unsigned int line_number, const char *arg)
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	for (index = 0; arg[index]; index++)
-	{
-		if (!isdigit(arg[index]) && !(index == 0 && arg[index] == '-'))
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			exit(EXIT_FAILURE);
-		}
-	}
-
 	num = atoi(arg);
 
 	new = malloc(sizeof(stack_t));
