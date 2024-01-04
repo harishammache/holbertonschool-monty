@@ -1,10 +1,9 @@
 #include "monty.h"
 /**
  * execute_opcode - Execute the corresponding Monty bytecode opcode.
- * @opcode: The opcode to be executed.
+ * @line: The line containing the opcode and, if applicable, the argument.
  * @stack: A pointer to the stack (a doubly linked list).
- *
- * Return: 0 on success, -1 on failure.
+ * @line_number: The current line number in the Monty bytecode file.
  */
 void execute_opcode(char *line, stack_t **stack, unsigned int line_number)
 {
