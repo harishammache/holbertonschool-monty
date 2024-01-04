@@ -22,11 +22,20 @@ void push(stack_t **stack, unsigned int line_number, const char *arg)
 {
 	stack_t *new;
 	int num;
+	int index;
 
 	if (arg == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
+	}
+	for (index = 0; arg[index]; index++)
+	{
+		if (!isdigit(arg[index]) && !(index == 0 && arg[index] == '-'))
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
 	}
 
 	num = atoi(arg);
