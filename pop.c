@@ -8,7 +8,7 @@
  * Description:
  *     Cette fonction est conçue pour exécuter l'opcode 'pop'.
  *     Elle retire l'élément se trouvant au sommet de la pile.
- *     Avant de retirer l'élément, la fonction vérifie 
+ *     Avant de retirer l'élément, la fonction vérifie
  * si la pile n'est pas vide.
  *     Si la pile est vide, un message d'erreur est affiché sur stderr,
  *     et le programme se termine avec un statut EXIT_FAILURE.
