@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ * add - Implement the add opcode
+ * @stack: A pointer to a pointer to the stack (a doubly linked list)
+ * @line_number: The line number in the Monty bytecode
+ * file where the "add" opcode is encountere
+*/
 void add(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
