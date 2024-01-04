@@ -20,7 +20,7 @@ void free_stack(stack_t **stack)
 	while (*stack != NULL)
 	{
 		temp = (*stack)->next;
-		free(*stack);
 		*stack = temp;
+		free(*stack);
 	}
 }

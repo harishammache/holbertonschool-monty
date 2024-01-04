@@ -13,7 +13,9 @@ int main(int argc, char *argv[])
 	size_t len = 0;
 	ssize_t read;
 	stack_t *stack = NULL;
-	unsigned int line_number = 0;    if (argc != 2)
+	unsigned int line_number = 0;
+
+	if (argc != 2)
 	{
 		fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
 		exit(EXIT_FAILURE);
@@ -26,15 +28,8 @@ int main(int argc, char *argv[])
 	}
 	while ((read = getline(&line, &len, file)) != -1)
 	{
-		char *opcode;
-
 		line_number++;
-		opcode = strtok(line, " \t\n");
-		if (opcode == NULL || opcode[0] == '#')
-		{
-			continue;
-		}
-		execute_opcode(opcode, &stack);
+		execute_opcode(line, &stack, line_number);
 	}
 	fclose(file);
 	free(line);

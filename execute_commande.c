@@ -6,19 +6,19 @@
  *
  * Return: 0 on success, -1 on failure.
  */
-int execute_opcode(char *opcode, stack_t **stack)
+void execute_opcode(char *line, stack_t **stack, unsigned int line_number)
 {
 	char *arg;
-	unsigned int line_number = 0;
+	char *opcode;
 
+	opcode = strtok(line, " \t\n");
 	arg = strtok(NULL, " \n");
+
+	if (opcode == NULL)
+		return;
+
 	if (strcmp(opcode, "push") == 0)
 	{
-		if (arg == NULL)
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			return (-1);
-		}
 		push(stack, line_number, arg);
 	}
 	else if (strcmp(opcode, "pall") == 0)
@@ -36,7 +36,6 @@ int execute_opcode(char *opcode, stack_t **stack)
 	else
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
-		return (-1);
+		exit(EXIT_FAILURE);
 	}
-	return (0);
 }
