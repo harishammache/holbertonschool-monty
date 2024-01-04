@@ -62,9 +62,13 @@ int main(int argc, char *argv[])
 		{
 			pint(&stack, line_number);
 		}
-		else if (strcmp(opcode, "pop") == 0) // Ajout de la condition pour 'pop'
+		else if (strcmp(opcode, "pop") == 0)
 		{
 			pop(&stack, line_number);
+		}
+		else if (strcmp(opcode, "swap") == 0) // Ajout de la condition pour 'swap'
+		{
+			swap(&stack, line_number);
 		}
 		else
 		{
