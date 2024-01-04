@@ -8,10 +8,12 @@
  * Description:
  *     Cette fonction est conçue pour exécuter l'opcode 'pint'.
  *     Elle imprime la valeur en haut de la pile, suivie d'une nouvelle ligne.
- *     Avant de tenter d'imprimer, la fonction vérifie si la pile n'est pas vide.
+ *     Avant de tenter d'imprimer, la fonction
+ * vérifie si la pile n'est pas vide.
  *     Si la pile est vide, un message d'erreur est affiché sur stderr,
  *     et le programme se termine avec un statut EXIT_FAILURE.
- *     Si la pile contient au moins un élément, la valeur du sommet est imprimée.
+ *     Si la pile contient au moins un élément,
+ * la valeur du sommet est imprimée.
  */
 
 void pint(stack_t **stack, unsigned int line_number)
