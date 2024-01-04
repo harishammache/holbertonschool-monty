@@ -1,15 +1,18 @@
 #include "monty.h"
+
 void add(stack_t **stack, unsigned int line_number)
 {
-	int sum;
-	stack_t *tmp;    if (!stack || !(*stack) || !(*stack)->next)
+	stack_t *temp;
+
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	tmp = (*stack)->next;
-	sum = (*stack)->n + tmp->n;
-	free(*stack);
-	(*stack) = tmp;
-	(*stack)->n = sum;
+
+	temp = *stack;
+	(*stack)->next->n += temp->n;
+	*stack = (*stack)->next;
+	free(temp);
+	(*stack)->prev = NULL;
 }
