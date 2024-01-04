@@ -18,21 +18,21 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
-		return(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	file = fopen(argv[1], "r");
-	if (file == NULL)
+	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		return(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	while ((read = getline(&line, &len, file)) != -1)
 	{
 		line_number++;
 		execute_opcode(line, &stack, line_number);
 	}
-	free(line);
 	fclose(file);
+	free(line);
 	free_stack(stack);
 	return (0);
 }
