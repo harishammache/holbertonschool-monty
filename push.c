@@ -23,9 +23,9 @@ void push(stack_t **stack, unsigned int line_number, const char *arg)
 	stack_t *new;
 	int num;
 
-	if (arg == NULL)
+	if (arg == NULL || !is_numeric(arg))
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", n);
 		exit(EXIT_FAILURE);
 	}
 
